@@ -1,29 +1,28 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Typography } from 'antd';
 import './App.css';
 import Footer from './components/Footer';
 import Login from './components/Login';
 import Logout from './components/Logout';
-import TravelList from './components/TravelList';
-import Navigation from './components/Navigation';
-import PrivateRoute from './components/PrivateRoute';
-
+import Profile from './components/Profile';
+import { useAuth0 } from '@auth0/auth0-react';
+import { Menu } from 'antd';
 
 function App() {
+  const { isLoading } = useAuth0();
+  const { Title } = Typography;
+  // const { SubMenu } = Menu;
+
+  if (isLoading) return <div>Loading...</div>
+  
   return (
-    <Router>
-      <div>
-        <Navigation />
-        <Switch>
-          <PrivateRoute exact path="/protected" component={TravelList} />
-          <Route path="/login" component={Login} />
-          <Route path="/logout" component={Logout} />
-          <Route component={Login} />
-          <Route component={Logout} />
-        </Switch>
+      <Menu className="app_container">
+        <Title level={1}>Travel Fun</Title>
+        <Login />
+        <Logout />
+        <Profile />
         <Footer />
-      </div>
-    </Router>
+      </Menu>
   );
 }
 

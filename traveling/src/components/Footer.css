@@ -1,0 +1,12 @@
+/* footer styles */
+
+.footer_container {
+    min-height: 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #001529;
+}
+
